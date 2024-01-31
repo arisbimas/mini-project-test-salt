@@ -9,7 +9,8 @@ type FormData = {
 };
 
 export default function LoginForm() {
-    const [dataForm, setDataForm] = useState<FormData>({
+    // State variables
+    const [formData, setFormData] = useState<FormData>({
         email: "",
         password: "",
         remember: false,
@@ -17,55 +18,64 @@ export default function LoginForm() {
     const [errorList, setErrorList] = useState<ErrorListProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const getErrorMessage = (nameField: string) => {
-        const findError = errorList.filter((x: ErrorListProps) => {
-            return x.nameField === nameField;
-        });
-        return findError
+    // Get error message for a specific field
+    const getErrorMessage = (fieldName: string) => {
+        return errorList.filter((error: ErrorListProps) => error.nameField === fieldName);
     };
 
-    const validateValidEmail = (email: string) => {
+    // Validate email format
+    const isEmailValid = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    const onLogin = () => {
-        setIsLoading(true)
+    // Perform login action
+    const handleLogin = () => {
+        setIsLoading(true);
+
+        // TODO: Implement the code for the login API call or use setTimeout to simulate
         setTimeout(() => {
-            alert("Login Success!")
-            setIsLoading(false)
+            alert("Login Success!");
+            setIsLoading(false);
         }, 3000);
-    }
+    };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    // Handle form submission
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         setErrorList([]);
-        let isValid = true
 
-        if (!dataForm.email) {
+        let isValid = true;
+
+        // Validate email
+        if (!formData.email) {
             setErrorList((prevErrors) => [
                 ...prevErrors,
                 { nameField: "email", errorText: "Please enter your email" },
             ]);
             isValid = false;
-        } else if (!validateValidEmail(dataForm.email)) {
-            isValid = false
+        } else if (!isEmailValid(formData.email)) {
+            isValid = false;
             setErrorList((prevErrors) => [
                 ...prevErrors,
                 { nameField: "email", errorText: "Invalid email format" },
             ]);
         }
 
-        if (!dataForm.password) {
-            isValid = false
+        // Validate password
+        if (!formData.password) {
+            isValid = false;
             setErrorList((prevErrors) => [
                 ...prevErrors,
                 { nameField: "password", errorText: "Please enter your password" },
             ]);
         }
 
-        if (isValid) onLogin()
-    }
+        // If form is valid, perform login
+        if (isValid) {
+            handleLogin();
+        }
+    };
 
     return (
         <div className="wrapper-login-form">
@@ -88,23 +98,23 @@ export default function LoginForm() {
                             <FormItemText
                                 id="email"
                                 label="Email"
-                                value={dataForm.email}
-                                onChange={(e) => setDataForm({ ...dataForm, email: e.target.value })}
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 errors={getErrorMessage("email")}
                             />
                             <FormItemPassword
                                 id="password"
                                 label="Password"
-                                value={dataForm.password}
-                                onChange={(e) => setDataForm({ ...dataForm, password: e.target.value })}
+                                value={formData.password}
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 errors={getErrorMessage("password")}
                             />
                             <div className="section-remember-me-forgot-password">
                                 <FormItemCheckbox
                                     id="remember"
                                     label="Remember me"
-                                    checked={dataForm.remember}
-                                    onChange={(e) => setDataForm({ ...dataForm, remember: e.target.checked })}
+                                    checked={formData.remember}
+                                    onChange={(e) => setFormData({ ...formData, remember: e.target.checked })}
                                 />
                                 <a href="#" className="forgot-password">Forgot Password?</a>
                             </div>
