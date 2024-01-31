@@ -1,0 +1,61 @@
+.btn {
+    width: 100%;
+    color: $white;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    cursor: pointer;
+    position: relative;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &-primary {
+        background-color: $iris;
+        border: 1px solid $iris;
+    }
+
+    &-outline {
+        color: $dark-violet;
+        background-color: $white;
+        border: 1px solid $light-violet;
+    }
+
+    &-small {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+
+    &.loading {
+        &::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+        }
+    }
+
+    @keyframes button-loading-spinner {
+        from {
+            transform: rotate(0turn);
+        }
+
+        to {
+            transform: rotate(1turn);
+        }
+    }
+}
