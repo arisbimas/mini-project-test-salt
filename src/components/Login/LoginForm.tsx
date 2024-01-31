@@ -80,71 +80,73 @@ export default function LoginForm() {
             </div>
             <div className="side-right">
                 <div className="wrapper-content">
-                    <p className="title">Hello</p>
-                    <p className="description">Enter your email and password to login.</p>
+                    <div className="content">
+                        <p className="title">Hello</p>
+                        <p className="description">Enter your email and password to login.</p>
 
-                    <form onSubmit={handleSubmit}>
-                        <FormItemText
-                            id="email"
-                            label="Email"
-                            value={dataForm.email}
-                            onChange={(e) => setDataForm({ ...dataForm, email: e.target.value })}
-                            errors={getErrorMessage("email")}
-                        />
-                        <FormItemPassword
-                            id="password"
-                            label="Password"
-                            value={dataForm.password}
-                            onChange={(e) => setDataForm({ ...dataForm, password: e.target.value })}
-                            errors={getErrorMessage("password")}
-                        />
-                        <div className="section-remember-me-forgot-password">
-                            <FormItemCheckbox
-                                id="remember"
-                                label="Remember me"
-                                checked={dataForm.remember}
-                                onChange={(e) => setDataForm({ ...dataForm, remember: e.target.checked })}
+                        <form onSubmit={handleSubmit}>
+                            <FormItemText
+                                id="email"
+                                label="Email"
+                                value={dataForm.email}
+                                onChange={(e) => setDataForm({ ...dataForm, email: e.target.value })}
+                                errors={getErrorMessage("email")}
                             />
-                            <a href="#" className="forgot-password">Forgot Password?</a>
-                        </div>
-                        <div className="section-buttons-login-signup">
-                            <Button
-                                label="Login"
-                                type="submit"
-                                isLoading={isLoading}
-                                disabled={isLoading}
+                            <FormItemPassword
+                                id="password"
+                                label="Password"
+                                value={dataForm.password}
+                                onChange={(e) => setDataForm({ ...dataForm, password: e.target.value })}
+                                errors={getErrorMessage("password")}
                             />
-                            <Button
-                                label="Sign Up"
-                                className="button-signup"
-                                disabled={isLoading}
-                                variant="outline"
-                            />
-                        </div>
-                        <div className="section-login-other">
-                            <p className="title">Or, login with</p>
-                            <div className="section-buttons">
+                            <div className="section-remember-me-forgot-password">
+                                <FormItemCheckbox
+                                    id="remember"
+                                    label="Remember me"
+                                    checked={dataForm.remember}
+                                    onChange={(e) => setDataForm({ ...dataForm, remember: e.target.checked })}
+                                />
+                                <a href="#" className="forgot-password">Forgot Password?</a>
+                            </div>
+                            <div className="section-buttons-login-signup">
                                 <Button
-                                    label="Facebook"
+                                    label="Login"
+                                    type="submit"
+                                    isLoading={isLoading}
                                     disabled={isLoading}
-                                    variant="outline"
-                                    size="small"
                                 />
                                 <Button
-                                    label="LinkedIn"
+                                    label="Sign Up"
+                                    className="button-signup"
                                     disabled={isLoading}
                                     variant="outline"
-                                    size="small"
-                                />
-                                <Button
-                                    label="Google"
-                                    disabled={isLoading}
-                                    variant="outline"
-                                    size="small"
                                 />
                             </div>
-                        </div>
-                    </form>
+                            <div className="section-login-other">
+                                <p className="title">Or, login with</p>
+                                <div className="section-buttons">
+                                    <Button
+                                        label="Facebook"
+                                        disabled={isLoading}
+                                        variant="outline"
+                                        size="small"
+                                    />
+                                    <Button
+                                        label="LinkedIn"
+                                        disabled={isLoading}
+                                        variant="outline"
+                                        size="small"
+                                    />
+                                    <Button
+                                        label="Google"
+                                        disabled={isLoading}
+                                        variant="outline"
+                                        size="small"
+                                    />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
